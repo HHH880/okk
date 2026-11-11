@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Her Name | Future Computer Scientist</title>
+  <meta name="description" content="A personal website about a 21 year old ready to study computer science." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+body {
+  font-family: "Inter", system-ui, sans-serif;
+  color: #2b2233;
+  background: #fbf6f3;
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+h1, h2, h3 { font-family: "Playfair Display", Georgia, serif; line-height: 1.2; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+
+.accent { color: #d9467f; }
+
+/* Navigation */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 6vw;
+  background: rgba(251, 246, 243, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(74, 29, 92, 0.08);
+}
+.brand { font-family: "Playfair Display", serif; font-weight: 700; font-size: 1.25rem; color: #4a1d5c; }
+.brand i { color: #d9467f; margin-right: 4px; }
+.nav-links { display: flex; gap: 26px; font-weight: 500; font-size: 0.95rem; }
+.nav-links a { color: #6f6479; transition: color 0.2s ease; }
+.nav-links a:hover { color: #d9467f; }
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: #4a1d5c;
+  cursor: pointer;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 24px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.98rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.btn:hover { transform: translateY(-3px); }
+.btn-main { background: linear-gradient(135deg, #e0568c, #8a3fb0); color: #fff; box-shadow: 0 12px 26px rgba(138, 63, 176, 0.3); }
+.btn-soft { background: #fff; color: #4a1d5c; border: 1.5px solid #e6d6ef; }
+
+/* Hero */
+.hero {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 50px;
+  align-items: center;
+  padding: 70px 6vw 90px;
+  background:
+    radial-gradient(circle at 85% 20%, rgba(224, 86, 140, 0.16), transparent 45%),
+    radial-gradient(circle at 10% 90%, rgba(138, 63, 176, 0.14), transparent 45%);
+}
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8a3fb0;
+  margin-bottom: 14px;
+}
+.hero h1 { font-size: clamp(2.4rem, 5vw, 3.8rem); color: #2b2233; margin-bottom: 18px; }
+.hero-lead { font-size: 1.1rem; color: #6f6479; max-width: 520px; margin-bottom: 30px; }
+.hero-buttons { display: flex; flex-wrap: wrap; gap: 14px; }
+
+.hero-visual { position: relative; display: flex; justify-content: center; }
+.code-window {
+  width: 100%;
+  max-width: 440px;
+  background: #261736;
+  border-radius: 20px;
+  box-shadow: 0 30px 60px rgba(74, 29, 92, 0.3);
+  overflow: hidden;
+  transform: rotate(2deg);
+}
+.code-top { display: flex; align-items: center; gap: 8px; padding: 14px 18px; background: #321f47; }
+.dot { width: 12px; height: 12px; border-radius: 50%; }
+.d1 { background: #ff6b81; }
+.d2 { background: #ffd166; }
+.d3 { background: #6ee7a8; }
+.code-title { margin-left: 10px; font-family: "JetBrains Mono", monospace; font-size: 0.8rem; color: #b9a6cc; }
+.code-window pre { padding: 22px 22px 26px; overflow-x: auto; }
+.code-window code { font-family: "JetBrains Mono", monospace; font-size: 0.88rem; line-height: 1.8; color: #efe3f7; }
+.k { color: #f48fb1; }
+.s { color: #a5e8c0; }
+.n { color: #ffd166; }
+.f { color: #8ecbff; }
+
+.floating {
+  position: absolute;
+  width: 58px;
+  height: 58px;
+  display: grid;
+  place-items: center;
+  font-size: 1.6rem;
+  color: #8a3fb0;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 14px 30px rgba(74, 29, 92, 0.18);
+  animation: bob 4s ease-in-out infinite;
+}
+.f1 { top: -18px; left: 6%; }
+.f2 { bottom: 24px; left: -8px; animation-delay: 1s; color: #d9467f; }
+.f3 { top: 40%; right: -6px; animation-delay: 2s; }
+@keyframes bob { 50% { transform: translateY(-12px); } }
+
+/* Sections */
+.section { padding: 90px 6vw; }
+.tinted { background: #f3e9f8; }
+.section-head { text-align: center; max-width: 640px; margin: 0 auto 50px; }
+.section-head h2 { font-size: clamp(1.9rem, 4vw, 2.6rem); color: #4a1d5c; }
+.section-sub { margin-top: 12px; color: #6f6479; }
+
+/* About */
+.about-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; max-width: 1000px; margin: 0 auto; align-items: start; }
+.about-text p { margin-bottom: 16px; color: #4d4357; font-size: 1.05rem; }
+.facts { background: #fff; border-radius: 22px; padding: 14px 26px; box-shadow: 0 16px 40px rgba(74, 29, 92, 0.1); }
+.facts li { display: flex; align-items: center; gap: 16px; padding: 16px 0; border-bottom: 1px solid #f0e6f5; }
+.facts li:last-child { border-bottom: none; }
+.facts i { font-size: 1.4rem; color: #d9467f; width: 28px; text-align: center; }
+.facts strong { display: block; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: #8a3fb0; }
+.facts span { color: #2b2233; }
+
+/* Study cards */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 24px; max-width: 1100px; margin: 0 auto 40px; }
+.card {
+  background: #fff;
+  border-radius: 22px;
+  padding: 30px 28px;
+  box-shadow: 0 14px 34px rgba(74, 29, 92, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.card:hover { transform: translateY(-6px); box-shadow: 0 22px 44px rgba(74, 29, 92, 0.16); }
+.card-icon {
+  width: 54px;
+  height: 54px;
+  display: grid;
+  place-items: center;
+  font-size: 1.5rem;
+  color: #fff;
+  background: linear-gradient(135deg, #e0568c, #8a3fb0);
+  border-radius: 16px;
+  margin-bottom: 18px;
+}
+.card h3 { font-size: 1.2rem; color: #4a1d5c; margin-bottom: 10px; }
+.card p { color: #6f6479; font-size: 0.97rem; }
+
+.split { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; max-width: 1100px; margin: 0 auto; }
+.panel { background: #fff; border-radius: 22px; padding: 30px 28px; box-shadow: 0 14px 34px rgba(74, 29, 92, 0.08); }
+.panel h3 { color: #4a1d5c; font-size: 1.3rem; margin-bottom: 18px; }
+.panel h3 i { color: #d9467f; margin-right: 6px; }
+.ticks li { display: flex; gap: 12px; padding: 8px 0; color: #4d4357; }
+.ticks i { color: #8a3fb0; font-size: 1.1rem; margin-top: 2px; }
+
+.quote {
+  max-width: 700px;
+  margin: 50px auto 0;
+  text-align: center;
+  font-family: "Playfair Display", serif;
+  font-size: 1.5rem;
+  color: #4a1d5c;
+}
+.quote i { display: block; font-size: 2.2rem; color: #d9467f; }
+
+/* Album */
+.album {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: 30px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 10px;
+}
+.photo {
+  width: 100%;
+  background: #fff;
+  padding: 18px 18px 22px;
+  border-radius: 18px;
+  box-shadow: 0 18px 40px rgba(74, 29, 92, 0.18);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.photo:nth-child(odd) { transform: rotate(-1.2deg); }
+.photo:nth-child(even) { transform: rotate(1deg); }
+.photo:hover { transform: rotate(0deg) translateY(-8px) scale(1.02); box-shadow: 0 26px 50px rgba(74, 29, 92, 0.28); z-index: 2; }
+.frame {
+  position: relative;
+  aspect-ratio: 5 / 6;
+  overflow: hidden;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #f7d6e6, #d9c3ee);
+  display: grid;
+  place-items: center;
+}
+.placeholder-icon { font-size: 2.6rem; color: rgba(74, 29, 92, 0.4); }
+.frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.frame.missing img { display: none; }
+.photo figcaption { margin-top: 14px; text-align: center; font-family: "Playfair Display", serif; font-size: 1.18rem; font-style: italic; letter-spacing: 0.02em; color: #4a1d5c; }
+
+/* Lightbox */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(30, 14, 42, 0.92);
+  padding: 30px;
+}
+.lightbox[hidden] { display: none; }
+.lb-figure { max-width: 900px; width: 100%; text-align: center; }
+.lb-stage { position: relative; display: flex; justify-content: center; }
+.lb-stage img { max-width: 100%; max-height: 74vh; border-radius: 10px; box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5); }
+.lb-missing {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 80px 60px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #f7d6e6, #d9c3ee);
+  color: #4a1d5c;
+  font-size: 1.1rem;
+}
+.lb-missing i { font-size: 3rem; }
+.lb-stage.is-missing img { display: none; }
+.lb-stage.is-missing .lb-missing { display: flex; }
+.lb-figure figcaption { margin-top: 16px; color: #efe3f7; font-family: "Playfair Display", serif; font-size: 1.2rem; }
+.lb-btn {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.lb-btn:hover { background: rgba(255, 255, 255, 0.28); }
+.lb-close { top: 22px; right: 22px; }
+.lb-prev { left: 22px; top: 50%; transform: translateY(-50%); }
+.lb-next { right: 22px; top: 50%; transform: translateY(-50%); }
+
+/* Contact and footer */
+.whatsapp-contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  max-width: 440px;
+  margin: 0 auto;
+  padding: 22px;
+  background: #fff;
+  border-radius: 22px;
+  box-shadow: 0 10px 24px rgba(74, 29, 92, 0.1);
+}
+.whatsapp-hint { color: #6f6479; font-size: 0.88rem; text-align: center; }
+.whatsapp-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 13px 22px;
+  border: 0;
+  border-radius: 999px;
+  background: #25d366;
+  color: #173c27;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+.whatsapp-submit:hover { transform: translateY(-3px); background: #20bd5a; }
+.whatsapp-submit[aria-disabled="true"] { opacity: 0.7; }
+.whatsapp-submit i { font-size: 1.2rem; }
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px 6vw;
+  background: #261736;
+  color: #cdbadd;
+  font-size: 0.92rem;
+}
+.footer i.bi-heart-fill { color: #f06292; }
+.to-top {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  transition: background 0.2s ease;
+}
+.to-top:hover { background: #d9467f; }
+
+/* Reveal on scroll */
+.js .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.js .reveal.visible { opacity: 1; transform: translateY(0); }
+.js .photo.reveal.visible:nth-child(odd) { transform: rotate(-2.2deg); }
+.js .photo.reveal.visible:nth-child(even) { transform: rotate(1.8deg); }
+.js .photo.reveal.visible:nth-child(3n) { transform: rotate(-0.8deg); }
+.js .photo.reveal.visible:hover { transform: rotate(0deg) translateY(-8px) scale(1.03); }
+
+/* Mobile */
+@media (max-width: 860px) {
+  .hero { grid-template-columns: 1fr; padding-top: 40px; }
+  .hero-visual { order: -1; }
+  .code-window { max-width: 380px; }
+  .about-grid { grid-template-columns: 1fr; }
+  .nav-toggle { display: block; }
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    background: #fbf6f3;
+    border-bottom: 1px solid rgba(74, 29, 92, 0.1);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+  .nav-links.open { max-height: 320px; }
+  .nav-links a { padding: 16px 6vw; border-top: 1px solid rgba(74, 29, 92, 0.06); }
+  .lb-prev { left: 8px; }
+  .lb-next { right: 8px; }
+  .footer { flex-direction: column; gap: 14px; text-align: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .floating { animation: none; }
+  .js .reveal { transition: none; }
+}
+  </style>
+</head>
+<body>
+
+  <header class="nav" id="top">
+    <a class="brand" href="#top"><i class="bi bi-stars"></i>Emmanuella</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+      <i class="bi bi-list"></i>
+    </button>
+    <nav class="nav-links" id="navLinks">
+      <a href="#about">About me</a>
+      <a href="#study">Study notes</a>
+      <a href="#album">Album</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <div class="hero-text">
+        <p class="eyebrow"><i class="bi bi-mortarboard"></i> Future computer scientist</p>
+        <h1>Hi, I am <span class="accent">Emmanuella</span>.</h1>
+        <p class="hero-lead">
+          I am  curious about everything, and ready to start my
+          journey in computer science. This little corner of the internet is
+          where I keep my story, my notes, and my favourite memories.
+        </p>
+        <div class="hero-buttons">
+          <a class="btn btn-main" href="#album"><i class="bi bi-images"></i> See my album</a>
+          <a class="btn btn-soft" href="#study"><i class="bi bi-journal-bookmark"></i> Read my study notes</a>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <div class="code-window">
+          <div class="code-top">
+            <span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span>
+            <span class="code-title">about_me.js</span>
+          </div>
+<pre><code><span class="k">const</span> me = {
+  name: <span class="s">"Emmanuella"</span>,
+  goal: <span class="s">"Computer Science"</span>,
+  loves: [<span class="s">"learning"</span>, <span class="s">"music"</span>],
+  ready: <span class="n">true</span>
+};
+
+<span class="k">function</span> <span class="f">startJourney</span>() {
+  <span class="k">return</span> <span class="s">"Hello, world!"</span>;
+}</code></pre>
+        </div>
+        <div class="floating f1"><i class="bi bi-cpu"></i></div>
+        <div class="floating f2"><i class="bi bi-code-slash"></i></div>
+        <div class="floating f3"><i class="bi bi-lightbulb"></i></div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="section-head reveal">
+        <p class="eyebrow"><i class="bi bi-person"></i> About me</p>
+        <h2>A little bit about me</h2>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <p>
+            I loves learning new things, laughing with the
+            people I care about, and turning ideas into something real.
+          </p>
+          <p>
+            I decided to study computer science because I enjoy solving
+            problems and building things that help people. I know it will be
+            challenging, and I am excited for every part of it.
+          </p>
+          <p>
+            Add more personal details here, such as favourite food, favourite
+            music, hobbies, dreams for the future, or anything else that
+            makes her smile.
+          </p>
+        </div>
+
+        <ul class="facts reveal">
+          <li><i class="bi bi-laptop"></i><span><strong>Next step</strong>Studying computer science</span></li>
+          <li><i class="bi bi-music-note-beamed"></i><span><strong>Favourite music</strong>Add it here</span></li>
+          <li><i class="bi bi-cup-hot"></i><span><strong>Favourite treat</strong>Loves watching movies</span></li>
+          <li><i class="bi bi-geo-alt"></i><span><strong>Based in</strong>KsTU</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section tinted" id="study">
+      <div class="section-head reveal">
+        <p class="eyebrow"><i class="bi bi-journal-bookmark"></i> Study notes</p>
+        <h2>Getting ready for computer science</h2>
+        <p class="section-sub">
+          A friendly overview of what the degree usually covers and how to
+          make the most of it.
+        </p>
+      </div>
+
+      <div class="cards">
+        <article class="card reveal">
+          <div class="card-icon"><i class="bi bi-question-circle"></i></div>
+          <h3>What is computer science?</h3>
+          <p>
+            It is the study of how computers work and how to use them to
+            solve problems. It goes far beyond coding. It includes logic,
+            mathematics, design, data, and creativity.
+          </p>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-icon"><i class="bi bi-braces"></i></div>
+          <h3>Programming fundamentals</h3>
+          <p>
+            You begin by learning to think in steps. Variables, loops,
+            conditions, and functions are the building blocks of every
+            program. Python and JavaScript are friendly places to start.
+          </p>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-icon"><i class="bi bi-diagram-3"></i></div>
+          <h3>Data structures and algorithms</h3>
+          <p>
+            Lists, stacks, queues, trees, and graphs help you organise
+            information. Algorithms are the recipes that process it quickly
+            and correctly. This is the heart of the degree.
+          </p>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-icon"><i class="bi bi-calculator"></i></div>
+          <h3>Mathematics for computing</h3>
+          <p>
+            Discrete mathematics, logic, probability, and some linear
+            algebra appear often. They train your mind to reason clearly and
+            prove that a solution works.
+          </p>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-icon"><i class="bi bi-database"></i></div>
+          <h3>Databases and the web</h3>
+          <p>
+            Learn how information is stored, searched, and shared. You will
+            meet SQL, servers, networks, and how websites are built from
+            HTML, CSS, and JavaScript.
+          </p>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-icon"><i class="bi bi-cpu"></i></div>
+          <h3>Computer systems</h3>
+          <p>
+            Understand what happens inside the machine, from processors and
+            memory to operating systems. It makes you a stronger programmer
+            because you know what your code really does.
+          </p>
+        </article>
+      </div>
+
+      <div class="split">
+        <div class="panel reveal">
+          <h3><i class="bi bi-lightbulb"></i> How I plan to study</h3>
+          <ul class="ticks">
+            <li><i class="bi bi-check2-circle"></i>Code a little every day, even for twenty minutes.</li>
+            <li><i class="bi bi-check2-circle"></i>Build small projects, because practice beats reading alone.</li>
+            <li><i class="bi bi-check2-circle"></i>Learn Git early and save work often.</li>
+            <li><i class="bi bi-check2-circle"></i>Ask questions and join a study group.</li>
+            <li><i class="bi bi-check2-circle"></i>Read other people's code to learn new ideas.</li>
+            <li><i class="bi bi-check2-circle"></i>Rest well. A fresh mind solves bugs faster.</li>
+          </ul>
+        </div>
+
+        <div class="panel reveal">
+          <h3><i class="bi bi-rocket-takeoff"></i> Where it can lead</h3>
+          <ul class="ticks">
+            <li><i class="bi bi-check2-circle"></i>Software and app development</li>
+            <li><i class="bi bi-check2-circle"></i>Data science and artificial intelligence</li>
+            <li><i class="bi bi-check2-circle"></i>Cybersecurity</li>
+            <li><i class="bi bi-check2-circle"></i>Web and user experience design</li>
+            <li><i class="bi bi-check2-circle"></i>Cloud computing and networks</li>
+            <li><i class="bi bi-check2-circle"></i>Research, teaching, or starting a company</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="quote reveal">
+        <i class="bi bi-quote"></i>
+        Every expert was once a beginner who kept going.
+      </p>
+    </section>
+
+    <section class="section" id="album">
+      <div class="section-head reveal">
+        <p class="eyebrow"><i class="bi bi-images"></i> Album</p>
+        <h2>My favourite moments</h2>
+        <p class="section-sub">Tap any photo to see it bigger.</p>
+      </div>
+
+      <div class="album">
+        <figure class="photo reveal">
+          <div class="frame"><i class="bi bi-camera placeholder-icon"></i><img src="images/photo1.jpeg" alt="Favourite photo 1" loading="lazy" /></div>
+          <figcaption>One of those golden moments that feels like sunshine in a memory.</figcaption>
+        </figure>
+        <figure class="photo reveal">
+          <div class="frame"><i class="bi bi-camera placeholder-icon"></i><img src="images/photo2.jpeg" alt="Favourite photo 2" loading="lazy" /></div>
+          <figcaption>A little snapshot of a moment worth keeping close.</figcaption>
+        </figure>
+        <figure class="photo reveal">
+          <div class="frame"><i class="bi bi-camera placeholder-icon"></i><img src="images/photo3.jpeg" alt="Favourite photo 3" loading="lazy" /></div>
+          <figcaption>May the joy in this memory stay with you always.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section tinted" id="contact">
+      <div class="section-head reveal">
+        <p class="eyebrow"><i class="bi bi-envelope"></i> Contact</p>
+        <h2>Let us stay in touch</h2>
+        <p class="section-sub">Tap below to start a WhatsApp chat.</p>
+      </div>
+
+      <div class="whatsapp-contact reveal">
+        <a class="whatsapp-submit" id="whatsappLink" href="#" target="_blank" rel="noopener noreferrer">
+          <i class="bi bi-whatsapp"></i> Message on WhatsApp
+        </a>
+        <p class="whatsapp-hint" id="whatsappHint" aria-live="polite"></p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>Made with <i class="bi bi-heart-fill"></i> for Ella. <span id="year"></span></p>
+    <a href="#top" class="to-top" aria-label="Back to top"><i class="bi bi-arrow-up"></i></a>
+  </footer>
+
+  <div class="lightbox" id="lightbox" hidden>
+    <button class="lb-btn lb-close" id="lbClose" aria-label="Close"><i class="bi bi-x-lg"></i></button>
+    <button class="lb-btn lb-prev" id="lbPrev" aria-label="Previous photo"><i class="bi bi-chevron-left"></i></button>
+    <button class="lb-btn lb-next" id="lbNext" aria-label="Next photo"><i class="bi bi-chevron-right"></i></button>
+    <figure class="lb-figure">
+      <div class="lb-stage">
+        <img id="lbImg" alt="" />
+        <div class="lb-missing" id="lbMissing"><i class="bi bi-camera"></i><span>Photo coming soon</span></div>
+      </div>
+      <figcaption id="lbCaption"></figcaption>
+    </figure>
+  </div>
+
+  <script>
+document.documentElement.classList.add("js");
+
+const $ = (id) => document.getElementById(id);
+
+/* Mobile menu */
+const navToggle = $("navToggle");
+const navLinks = $("navLinks");
+
+navToggle.addEventListener("click", () => {
+  const open = navLinks.classList.toggle("open");
+  navToggle.setAttribute("aria-expanded", String(open));
+  navToggle.querySelector("i").className = open ? "bi bi-x-lg" : "bi bi-list";
+});
+
+navLinks.querySelectorAll("a").forEach((a) =>
+  a.addEventListener("click", () => {
+    navLinks.classList.remove("open");
+    navToggle.setAttribute("aria-expanded", "false");
+    navToggle.querySelector("i").className = "bi bi-list";
+  })
+);
+
+/* Footer year */
+$("year").textContent = new Date().getFullYear();
+
+/* WhatsApp contact: set the number below using digits only, including country code. */
+const whatsappPhoneNumber = "+233245270208";
+const whatsappLink = $("whatsappLink");
+const whatsappHint = $("whatsappHint");
+const whatsappDigits = whatsappPhoneNumber.replace(/\D/g, "");
+
+if (/^\d{7,15}$/.test(whatsappDigits)) {
+  whatsappLink.href = `https://wa.me/${whatsappDigits}`;
+} else {
+  whatsappLink.setAttribute("aria-disabled", "true");
+  whatsappHint.textContent = "Add the WhatsApp number in the code to enable this button.";
+  whatsappLink.addEventListener("click", (event) => event.preventDefault());
+}
+
+/* Reveal on scroll */
+const revealEls = document.querySelectorAll(".reveal");
+if ("IntersectionObserver" in window) {
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          io.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.12 }
+  );
+  revealEls.forEach((el) => io.observe(el));
+} else {
+  revealEls.forEach((el) => el.classList.add("visible"));
+}
+
+/* Album: show a placeholder when a photo file is missing */
+const photos = Array.from(document.querySelectorAll(".photo"));
+
+photos.forEach((fig) => {
+  const img = fig.querySelector("img");
+  const frame = fig.querySelector(".frame");
+  const markMissing = () => frame.classList.add("missing");
+  img.addEventListener("error", markMissing);
+  if (img.complete && img.naturalWidth === 0) markMissing();
+});
+
+/* Lightbox */
+const lightbox = $("lightbox");
+const lbImg = $("lbImg");
+const lbCaption = $("lbCaption");
+const lbStage = document.querySelector(".lb-stage");
+let current = 0;
+
+function showPhoto(index) {
+  current = (index + photos.length) % photos.length;
+  const fig = photos[current];
+  const img = fig.querySelector("img");
+  const missing = fig.querySelector(".frame").classList.contains("missing");
+
+  lbStage.classList.toggle("is-missing", missing);
+  if (!missing) {
+    lbImg.src = img.currentSrc || img.src;
+    lbImg.alt = img.alt;
+  }
+  lbCaption.textContent = fig.querySelector("figcaption").textContent;
+}
+
+function openLightbox(index) {
+  showPhoto(index);
+  lightbox.hidden = false;
+  document.body.style.overflow = "hidden";
+}
+
+function closeLightbox() {
+  lightbox.hidden = true;
+  document.body.style.overflow = "";
+}
+
+photos.forEach((fig, i) => fig.addEventListener("click", () => openLightbox(i)));
+
+$("lbClose").addEventListener("click", closeLightbox);
+$("lbPrev").addEventListener("click", () => showPhoto(current - 1));
+$("lbNext").addEventListener("click", () => showPhoto(current + 1));
+
+lightbox.addEventListener("click", (e) => {
+  if (e.target === lightbox) closeLightbox();
+});
+
+document.addEventListener("keydown", (e) => {
+  if (lightbox.hidden) return;
+  if (e.key === "Escape") closeLightbox();
+  if (e.key === "ArrowLeft") showPhoto(current - 1);
+  if (e.key === "ArrowRight") showPhoto(current + 1);
+});
+
+/* Touch swipe in the lightbox */
+let startX = 0;
+lightbox.addEventListener("touchstart", (e) => { startX = e.touches[0].clientX; }, { passive: true });
+lightbox.addEventListener("touchend", (e) => {
+  const dx = e.changedTouches[0].clientX - startX;
+  if (Math.abs(dx) > 50) showPhoto(current + (dx < 0 ? 1 : -1));
+});
+  </script>
+</body>
+</html>
